@@ -6,11 +6,10 @@ import java.awt.event.ActionEvent;
 import java.util.List;
 import java.util.*;
 
-public class App {
-    private static final Color BACKGROUND = new JLabel().getBackground();
+public class App2 {
 
     public static void main(String[] args) {
-        Runnable runnable = App::createAndShowGui;
+        Runnable runnable = App2::createAndShowGui;
         SwingUtilities.invokeLater(runnable);
     }
 
@@ -23,10 +22,7 @@ public class App {
         JPanel panel = new JPanel(new BorderLayout());
 
         // grid panel
-        List<Color> colors = Arrays.asList(Color.BLUE, Color.RED, Color.YELLOW, Color.GREEN, Color.BLACK, Color.WHITE);
-        List<JButton> fieldCells = initializeGame(colors);
-        bindViewToModel(colors, fieldCells);
-        JPanel gridLayout = initializeView(fieldCells);
+        GridPanel gridLayout = new GridPanel();
 
         panel.add(gridLayout, BorderLayout.CENTER);
 
@@ -36,13 +32,13 @@ public class App {
         boxLayout.add(new JButton(new AbstractAction("Prekid") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bindViewToModel(colors, fieldCells);
+                bindViewToModel(gridLayout.getColors(), gridLayout.getFieldCells());
             }
         }));
         boxLayout.add(new JButton(new AbstractAction("Restart") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bindViewToModel(colors, fieldCells);
+                bindViewToModel(gridLayout.getColors(), gridLayout.getFieldCells());
             }
         }));
         boxLayout.add(new JButton(new AbstractAction("Izlazak") {
@@ -72,13 +68,13 @@ public class App {
 
     private static void bindButton(AbstractAction buttonAction, JButton jButton) {
         jButton.setAction(buttonAction);
-        jButton.setBackground(BACKGROUND);
+        jButton.setBackground(GridPanel.BACKGROUND);
     }
 
     private static JPanel initializeView(List<JButton> fieldCells) {
         JPanel gameField = new JPanel(new GridLayout(4, 3));
         for (JButton fieldCell : fieldCells) {
-            fieldCell.setBackground(BACKGROUND);
+            fieldCell.setBackground(GridPanel.BACKGROUND);
             fieldCell.setEnabled(true);
             gameField.add(fieldCell);
         }
@@ -95,7 +91,8 @@ public class App {
     }
 
     private static AbstractAction createButtonAction(Collection<JComponent> clickedButtons, Color color) {
-         AbstractAction abstractAction = new AbstractAction() {
+
+        return new AbstractAction() {
             Collection<JComponent> clickedPartners = new HashSet<>();
 
             @Override
@@ -109,7 +106,7 @@ public class App {
                     if (clickedPartners.size() != 2) {
                         JOptionPane.showMessageDialog(thisButton, "Greska");
                         for (JComponent partner : clickedButtons) {
-                            partner.setBackground(BACKGROUND);
+                            partner.setBackground(GridPanel.BACKGROUND);
                             partner.setEnabled(true);
                         }
                     }
@@ -118,7 +115,5 @@ public class App {
                 }
             }
         };
-
-        return abstractAction;
     }
 }
