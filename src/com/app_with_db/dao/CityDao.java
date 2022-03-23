@@ -81,7 +81,7 @@ public class CityDao implements Dao<City>{
 
     @Override
     public void delete(City entity) throws SQLException {
-        String sqlQuery = "DELETE FROM city WHERE city_id = ?";
+        /*String sqlQuery = "DELETE FROM city WHERE city_id = ?";
         Connection connection = connectionPool.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);) {
             preparedStatement.setInt(1, entity.getCityId());
@@ -89,7 +89,7 @@ public class CityDao implements Dao<City>{
             System.out.println("Broj izbrisanih objekata je "+count);
         } catch (SQLException sqlException) {
             System.err.println(sqlException.getMessage());
-        }
+        }*/
     }
 
     public Vector<String> getColumnNames() {

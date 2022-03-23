@@ -16,7 +16,7 @@ public class CityPanel extends JPanel {
 
     private JTable cityTable;
     private CityDao cityDao;
-    private JButton jButton;
+    //private JButton jButton;
 
     public CityPanel(CityDao cityDao) {
         this.cityDao = cityDao;
@@ -27,7 +27,7 @@ public class CityPanel extends JPanel {
         CityModel cityModel = new CityModel(columnNames, data);
         cityTable.setModel(cityModel);
         cityTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        jButton = new JButton("Obrisi");
+        /*jButton = new JButton("Obrisi");
         jButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -37,9 +37,9 @@ public class CityPanel extends JPanel {
                     JOptionPane.showMessageDialog(null, "Selected row deleted successfully");
                 }
             }
-        });
+        });*/
         add(new JScrollPane(cityTable));
-        add(jButton);
+        //add(jButton);
     }
 
     private Vector<String> getColumnNames() {
@@ -103,13 +103,13 @@ public class CityPanel extends JPanel {
         }
 
         public void removeRow(int row) {
-            tableData.removeElementAt(row);
+            /*tableData.removeElementAt(row);
             try {
                 cityDao.delete(cityDao.retrieve(row+1));
                 fireTableRowsDeleted(row,row);
             } catch (SQLException e) {
                 System.err.println(e.getMessage());
-            }
+            }*/
         }
 
         @Override
