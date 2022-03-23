@@ -12,7 +12,8 @@ public class App {
         JFrame frame = new JFrame();
         frame.setTitle("Demo GUI");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        JPanel panel = new RadioButtonPanel();
+        //JPanel panel = new RadioButtonPanel();
+        JPanel panel = new ComboBoxPanel2();
         frame.setContentPane(panel);
         frame.pack();
         frame.setVisible(true);
